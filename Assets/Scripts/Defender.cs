@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Defender : MonoBehaviour
@@ -13,6 +11,6 @@ public class Defender : MonoBehaviour
 
     public int GetStarCost()
     {
-        return 100;
+        return m_starCost;
     }
 }

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AttackerSpawner : MonoBehaviour
@@ -7,7 +6,7 @@ public class AttackerSpawner : MonoBehaviour
     private bool spawn = true;
     [SerializeField] private float m_minSpawnDelay = 1f;
     [SerializeField] private float m_maxSpawnDelay = 5f;
-    [SerializeField] private Attacker m_attackerPrefab;
+    [SerializeField] private Attacker[] m_attackerPrefabArray;
 
     IEnumerator Start()
     {
@@ -18,10 +17,21 @@ public class AttackerSpawner : MonoBehaviour
         }
     }
 
+    public void StopSpawning()
+    {
+        spawn = false;
+    }
+
     private void SpawnAttacker()
     {
+        var attackerIndex = Random.Range(0, m_attackerPrefabArray.Length);
+        Spawn(m_attackerPrefabArray[attackerIndex]);
+    }
+
+    private void Spawn(Attacker myAttacker)
+    {
         Attacker newAttacker = Instantiate
-            (m_attackerPrefab, transform.position, transform.rotation)
+            (myAttacker, transform.position, transform.rotation)
             as Attacker;
         newAttacker.transform.parent = transform;
     }

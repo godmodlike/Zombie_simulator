@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Shooter : MonoBehaviour
@@ -8,7 +6,13 @@ public class Shooter : MonoBehaviour
     [SerializeField] private GameObject gun;
 
     private AttackerSpawner myLaneSpawner;
+    private Animator m_animator;
 
+    private void Awake()
+    {
+        if (m_animator == null)
+            m_animator = GetComponent<Animator>();
+    }
 
     private void Start()
     {
@@ -20,10 +24,12 @@ public class Shooter : MonoBehaviour
         if (IsAttackerInLane())
         {
             // TODO change animation state to attack
+            m_animator.SetBool("IsAttacking", true);
         }
         else
         {
             // TODO change animation state to idle
+            m_animator.SetBool("IsAttacking", false);
         }
     }
 
@@ -32,7 +38,8 @@ public class Shooter : MonoBehaviour
         AttackerSpawner[] spawners = FindObjectsOfType<AttackerSpawner>();
         foreach (AttackerSpawner spawner in spawners)
         {
-            bool isCloseEnough = (spawner.transform.position.y - transform.position.y <= Mathf.Epsilon);
+            bool isCloseEnough = 
+                (Mathf.Abs(spawner.transform.position.y - transform.position.y - .22f) <= .5);
             if (isCloseEnough)
             {
                 myLaneSpawner = spawner;

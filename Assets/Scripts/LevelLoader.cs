@@ -1,9 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LevelLoad : MonoBehaviour
+public class LevelLoader : MonoBehaviour
 {
     private const float TIME_TO_WAIT = 4f;
 
@@ -22,8 +21,30 @@ public class LevelLoad : MonoBehaviour
         LoadNextScene(m_currentSceneIndex);
     }
 
+    public void LoadOptionsScene()
+    {
+        SceneManager.LoadScene("Options");
+    }
+
     public void LoadNextScene(int index)
     {
         SceneManager.LoadScene(index + 1);
+        Time.timeScale = 1f;
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(m_currentSceneIndex);
+        Time.timeScale = 1f;
+    }
+
+    public void LoadloseScene()
+    {
+        SceneManager.LoadScene("Lose Screen");
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 }
