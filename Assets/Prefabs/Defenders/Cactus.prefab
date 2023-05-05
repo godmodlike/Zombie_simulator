@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7572882025665007425}
   - component: {fileID: 5914590231028567466}
   - component: {fileID: 5914590231028567467}
+  - component: {fileID: 5914590231028567468}
   m_Layer: 0
   m_Name: Cactus
   m_TagString: Untagged
@@ -46,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccea987fad0693645b9d90d0e68ed250, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_starCost: 100
+  m_starCost: 50
 --- !u!61 &5914590231028567467
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -57,7 +58,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.0023465157, y: 0.03414631}
@@ -73,6 +74,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.9953065, y: 0.95468855}
   m_EdgeRadius: 0
+--- !u!114 &5914590231028567468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4084635514455145230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23ba345c814d59744a37f77374edab5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 80
+  deathVFX: {fileID: 0}
 --- !u!1 &7690831093450999358
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,5 +238,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caee656ea8470514ba75089297e6000d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 2819500419146161156, guid: 84a7b99507b41eb43b15a03bab3c7f15, type: 3}
+  m_projectile: {fileID: 2819500419146161156, guid: 84a7b99507b41eb43b15a03bab3c7f15, type: 3}
   gun: {fileID: 7690831093450999358}

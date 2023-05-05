@@ -249,7 +249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6835277441c27584fa2094fd96b1bab1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_defenderPrefab: {fileID: 0}
+  m_defenderPrefab: {fileID: 5914590231028567466, guid: 1533e63396d661541ac5b21b07ae10c6, type: 3}
 --- !u!1 &6156234042841181178
 GameObject:
   m_ObjectHideFlags: 0
@@ -520,7 +520,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 10
 --- !u!1 &6156234044213244934
 GameObject:
   m_ObjectHideFlags: 0

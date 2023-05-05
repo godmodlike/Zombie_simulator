@@ -1,8 +1,29 @@
+using System;
 using UnityEngine;
 
 public class DefenderSpawner : MonoBehaviour
 {
-    [SerializeField] private Defender m_defender;
+    private Defender m_defender;
+    private GameObject m_defenderParent;
+    private Defender[] m_allDefenders;
+
+    private const string DEFENDER_PARENT_NAME = "Defenders";
+
+    private void Awake()
+    {
+        CreateDefenderParent();
+        m_allDefenders = FindObjectsOfType<Defender>();
+    }
+
+    private void CreateDefenderParent()
+    {
+        m_defenderParent = GameObject.Find(DEFENDER_PARENT_NAME);
+        if (!m_defenderParent)
+        {
+            m_defenderParent = new GameObject(DEFENDER_PARENT_NAME);
+        }
+    }
+
     private void OnMouseDown()
     {
         AttemptToPlaceDefenderAt(GetSquareClicked());
@@ -17,7 +38,15 @@ public class DefenderSpawner : MonoBehaviour
     {
         var starDisplay = FindObjectOfType<StarDisplay>();
         int defenderCost = m_defender.GetStarCost();
-        if (starDisplay.HaveEnoughStars(defenderCost))
+        bool isOne = false;
+        foreach (Defender df in m_allDefenders)
+        {
+            if (df.transform.position.Equals(gridPos))
+            {
+                isOne = true;
+            }
+        }
+        if (starDisplay.HaveEnoughStars(defenderCost) && !isOne)
         {
             SpawnDefender(gridPos);
             starDisplay.SpendStars(defenderCost);
@@ -45,6 +74,7 @@ public class DefenderSpawner : MonoBehaviour
         if (m_defender != null)
         {
             newDefender = Instantiate(m_defender, roundedPos, Quaternion.identity) as Defender;
+            newDefender.transform.parent = m_defenderParent.transform;
         }
     }
 }

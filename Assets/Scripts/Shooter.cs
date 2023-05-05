@@ -1,9 +1,12 @@
+using System;
 using UnityEngine;
 
 public class Shooter : MonoBehaviour
 {
-    [SerializeField] private GameObject projectile;
+    [SerializeField] private GameObject m_projectile;
     [SerializeField] private GameObject gun;
+    private GameObject m_projectileParent;
+    private const string PROJECTILE_PARENT_NAME = "Projectiles";
 
     private AttackerSpawner myLaneSpawner;
     private Animator m_animator;
@@ -12,6 +15,16 @@ public class Shooter : MonoBehaviour
     {
         if (m_animator == null)
             m_animator = GetComponent<Animator>();
+        CreateProjectileParent();
+    }
+
+    private void CreateProjectileParent()
+    {
+        m_projectileParent = GameObject.Find(PROJECTILE_PARENT_NAME);
+        if (!m_projectileParent)
+        {
+            m_projectileParent = new GameObject(PROJECTILE_PARENT_NAME);
+        }
     }
 
     private void Start()
@@ -57,6 +70,7 @@ public class Shooter : MonoBehaviour
 
     public void Fire()
     {
-        Instantiate(projectile, gun.transform.position, transform.rotation);
+        GameObject projectile = Instantiate(m_projectile, gun.transform.position, transform.rotation);
+        projectile.transform.parent = m_projectileParent.transform;
     }
 }
